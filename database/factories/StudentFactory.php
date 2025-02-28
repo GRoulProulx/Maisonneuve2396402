@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\City;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Student>
  */
@@ -22,7 +23,7 @@ class StudentFactory extends Factory
             'phone' => $this->faker->phoneNumber,
             'email' => $this->faker->email,
             'date_of_birth' => $this->faker->date,
-            'city_id' => City::factory()
+            'city_id' => City::pluck('id')->random()
         ];
     }
 }
