@@ -12,7 +12,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = Student::all();
+
+        return view('student.index', ['students' => $students]);
     }
 
     /**
@@ -20,7 +22,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('student.create');
     }
 
     /**
@@ -28,7 +30,23 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required | string | max:100',
+            'address' => 'required | string | max:100',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'date_of_birth' => 'required|date',
+        ]);
+        $student = Student::create([
+            'name' => $request->name,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'date_of_birth' => $request->date_of_birth,
+            'city_id' => $request->city_id
+        ]);
+
+        return redirect()->route('student.show')->with('success', 'Student created successfully.');
     }
 
     /**
@@ -36,7 +54,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return view('student.show', ['student' => $student]);
     }
 
     /**
@@ -44,7 +62,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return view('student.edit', ['student' => $student]);
     }
 
     /**
@@ -52,7 +70,25 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'date_of_birth' => 'required|date',
+            'city_id' => 'required',
+        ]);
+
+        $student->update([
+            'name' => $request->name,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'date_of_birth' => $request->date_of_birth,
+            'city_id' => $request->city_id,
+        ]);
+
+        return redirect()->route('student.show', $student->id)->with('success', 'Informations updated successfully');
     }
 
     /**
@@ -60,6 +96,9 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $id = $student->id;
+        $student->delete();
+
+        return redirect()->route('student.index')->with('success', 'Student with id ' . $id . 'has been deleted!'); 
     }
 }
