@@ -8,13 +8,14 @@
             <h2 class="text-white">List of students</h2>
         </div>
         <div class="col text-end">
-            <a href="{{ route('student.create') }}" class="btn btn-primary">Add a new student</a>
+            <a href="{{ route('student.create') }}" class="btn btn-success">Add a new student</a>
         </div>
     </div>
 
-    <table class="table table-dark table-striped">
+    <table class="table table-dark table-striped table-bordered">
         <thead>
             <tr>
+                <th class="text-primary fs-4">ID</th>
                 <th class="text-primary fs-4">Name</th>
                 <th class="text-primary fs-4">Address</th>
                 <th class="text-primary fs-4">Phone</th>
@@ -27,21 +28,18 @@
         <tbody>
             @foreach ($students as $student)
             <tr>
+                <td>{{$student->id}}</td>
                 <td>{{$student->name}}</td>
                 <td>{{$student->address}}</td>
                 <td>{{$student->phone}}</td>
                 <td>{{$student->email}}</td>
                 <td>{{$student->date_of_birth}}</td>
-                <td>{{ $student->city_id}}</td>
+                <td>{{ $student->city->name }}</td>
                 <td>
                     <div class="d-flex gap-2">
                         <a href="{{ route('student.show', $student->id) }}" class="btn btn-info btn-sm">View</a>
                         <a href="{{ route('student.edit', $student->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('student.destroy', $student->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this student?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+
                     </div>
                 </td>
             </tr>

@@ -57,7 +57,7 @@
             </div>
         </nav>
     </header>
-    <main class="container-fluid p-10 bg-black text-white">
+    <main class="container-fluid p-10 bg-grey bg-gradient text-white">
         @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{session('success')}}
