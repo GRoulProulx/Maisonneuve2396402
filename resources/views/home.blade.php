@@ -7,7 +7,7 @@
       <div class="row align-items-center">
             <div class="col-lg-6">
                   <h1 class="display-4 fw-bold mb-4">Welcome to {{ config('app.name') }}</h1>
-                  <p class="lead mb-4">A platform designed for students at College Maisonneuve to connect, share resources, and succeed together.</p>
+                  <p class="lead mb-4">A platform designed for students at College Maisonneuve to connect, share resources, and to make friends.</p>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                         <a href="#" class="btn btn-primary btn-lg px-4 me-md-2">Get Started</a>
                         <a href="#" class="btn btn-outline-light btn-lg px-4">Learn More</a>

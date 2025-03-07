@@ -14,19 +14,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
 
-Route::get('/student', [StudentController::class, 'index'])->name('students.index');
-Route::get('/student/{student}', [StudentController::class, 'show'])->name('students.show');
-Route::get('/create/student', [StudentController::class, 'create'])->name('students.create');
+
+/* Créations des routes automatiques */
+
+Route::resource('students', StudentController::class)->names([
+    'index' => 'student.index',
+    'create' => 'student.create',
+    'store' => 'student.store',
+    'show' => 'student.show',
+    'edit' => 'student.edit',
+    'update' => 'student.update',
+    'destroy' => 'student.destroy',
+]);
+
+
+Route::get('/student', [StudentController::class, 'index'])->name('student.index');
+Route::get('/student/{student}', [StudentController::class, 'show'])->name('student.show');
+Route::get('/create/student', [StudentController::class, 'create'])->name('student.create');
 Route::get('/student/student/{student}', [StudentController::class, 'edit'])->name('students.edit');
 
-Route::put('/student/{student}', [StudentController::class, 'update'])->name('students.update');
+Route::put('/student/{student}', [StudentController::class, 'update'])->name('student.update');
 Route::delete('/student/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
 
 Route::post('/create/student', [StudentController::class, 'store'])->name('students.store');
-
-
