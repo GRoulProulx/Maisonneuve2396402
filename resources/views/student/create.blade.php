@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">Add student</button>
                             <a href="{{ route('student.index') }}" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>

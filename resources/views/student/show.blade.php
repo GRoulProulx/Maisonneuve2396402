@@ -33,19 +33,42 @@
                         </tr>
                         <tr>
                             <th>City</th>
-                            <td>{{ $student->city->name ?? 'N/A' }}</td>
+                            <td>{{ $student->city->name }}</td>
                         </tr>
                     </table>
 
                     <div class="d-flex gap-2 mt-3">
                         <a href="{{ route('student.edit', $student->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('student.destroy', $student->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this student?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            Delete
+                        </button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">Delete</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-black">
+                <p>Delete this student?</p>
+                <p><strong>Name:</strong> {{ $student->name }}</p>
+                <p class="text-danger"><strong>This cannot be undone!</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form action="{{ route('student.destroy', $student->id) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete Student</button>
+                </form>
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\City;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -14,6 +15,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
+        $students = Student::paginate(10);
 
         return view('student.index', ['students' => $students]);
     }
@@ -33,12 +35,13 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required | string | max:100',
-            'address' => 'required | string | max:100',
-            'phone' => 'required',
+            'name' => 'required | string | min:4 | max:100',
+            'address' => 'required | string | min:4 | max:100',
+            'phone' => 'required | min:7',
             'email' => 'required|email',
             'date_of_birth' => 'required|date',
         ]);
+
         $student = Student::create([
             'name' => $request->name,
             'address' => $request->address,
@@ -74,12 +77,11 @@ class StudentController extends Controller
     public function update(Request $request, Student $student)
     {
         $request->validate([
-            'name' => 'required',
-            'address' => 'required',
+            'name' => 'required | string | max:100',
+            'address' => 'required | string | max:100',
             'phone' => 'required',
             'email' => 'required|email',
             'date_of_birth' => 'required|date',
-            'city_id' => 'required',
         ]);
 
         $student->update([
@@ -99,9 +101,9 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        $id = $student->id;
+        $name = $student->name;
         $student->delete();
 
-        return redirect()->route('student.index')->with('success', 'Student with id ' . $id . 'has been deleted!'); 
+        return redirect()->route('student.index')->with('success', 'Student with the name ' . $name . ' has been deleted!'); 
     }
 }

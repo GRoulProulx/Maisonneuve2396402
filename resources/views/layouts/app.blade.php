@@ -13,7 +13,7 @@
 <body class="d-flex flex-column h-100 bg-dark text-white">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm" aria-label="Main navigation">
-            <a href="/"><img style="height: 80px;" src="https://logosandtypes.com/wp-content/uploads/2022/03/college-maisonneuve.svg" alt=""></a>
+            <a href="/"><img style="height: 60px;" src="https://logosandtypes.com/wp-content/uploads/2022/03/college-maisonneuve.svg" alt=""></a>
             <div class="container-fluid">
                 <a class="navbar-brand fw-bold" href="/">
                     <i class="fas fa-house fa-lg me-2"></i>{{ config('app.name') }}
@@ -57,18 +57,16 @@
             </div>
         </nav>
     </header>
-    <main class="container-fluid p-10 bg-grey bg-gradient text-white">
+    <main class="flex-shrink-0 p-3">
         @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{session('success')}}
+            {{ session('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
-
         @yield('content')
     </main>
     <footer class="footer mt-auto py-4 border-top text-white">
-
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start">
@@ -82,7 +80,6 @@
                     <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
                     <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
                 </div>
-                <!--   <img class="img-fluid" style="height: 180px;" src="https://i.ibb.co/fV5KJCLC/maisonneuve-col.png" alt=""> -->
             </div>
         </div>
     </footer>

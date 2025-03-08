@@ -54,7 +54,7 @@
 
                         <div class="mb-3">
                             <label for="city_id" class="form-label">City</label>
-                            <select class="form-control" id="city_id" name="city_id">
+                            <select class="form-control" id="city_id" name="city_id" required>
                                 <option value="">Select a city</option>
                                 @if(isset($cities))
                                 @foreach($cities as $city)
