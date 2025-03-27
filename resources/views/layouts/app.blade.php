@@ -45,8 +45,8 @@
                             <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                 aria-expanded="false"><i class="fas fa-globe me-1"></i> Language</a>
                             <ul class="dropdown-menu dropdown-menu-end shadow">
-                                <li><a class="dropdown-item" href="#">English</a></li>
-                                <li><a class="dropdown-item" href="#">French</a></li>
+                                <li><a class="dropdown-item" href="{{ route('lang', 'en') }}">English</a></li>
+                                <li><a class="dropdown-item" href="{{ route('lang', 'fr') }}">French</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
