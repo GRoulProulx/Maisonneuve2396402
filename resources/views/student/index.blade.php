@@ -1,14 +1,14 @@
 @extends('layouts.app')
-@section('title', 'Student List')
+@section('title', '@lang("list_students")')
 @section('content')
 
 <div class="container-fluid mt-4">
     <div class="row mb-3">
         <div class="col">
-            <h2 class="text-white">List of students</h2>
+            <h2 class="text-white">@lang('list_students')</h2>
         </div>
         <div class="col text-end">
-            <a href="{{ route('student.create') }}" class="btn btn-success">Add a new student</a>
+            <a href="{{ route('student.create') }}" class="btn btn-success">@lang('add_students')</a>
         </div>
     </div>
     <div class="table-responsive">
@@ -16,13 +16,13 @@
             <thead>
                 <tr class="text-nowrap">
                     <th class="text-primary fs-4">ID</th>
-                    <th class="text-primary fs-4">Name</th>
-                    <th class="text-primary fs-4">Address</th>
-                    <th class="text-primary fs-4">Phone</th>
-                    <th class="text-primary fs-4">Email</th>
-                    <th class="text-primary fs-4">Birthday</th>
-                    <th class="text-primary fs-4">City</th>
-                    <th class="text-primary fs-4">Actions</th>
+                    <th class="text-primary fs-4">@lang('name')</th>
+                    <th class="text-primary fs-4">@lang('address')</th>
+                    <th class="text-primary fs-4">@lang('phone')</th>
+                    <th class="text-primary fs-4">@lang('email')</th>
+                    <th class="text-primary fs-4">@lang('birthday')</th>
+                    <th class="text-primary fs-4">@lang('city')</th>
+                    <th class="text-primary fs-4">@lang('actions')</th>
                 </tr>
             </thead>
             <tbody>

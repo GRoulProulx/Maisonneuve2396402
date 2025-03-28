@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="{{ $locale ?? 'en' }}" class="h-100">
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +11,7 @@
 </head>
 
 <body class="d-flex flex-column h-100 bg-dark text-white">
+    @php $locale = session()->get('locale'); @endphp
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm" aria-label="Main navigation">
             <a href="/"><img style="height: 60px;" src="https://logosandtypes.com/wp-content/uploads/2022/03/college-maisonneuve.svg" alt=""></a>
@@ -26,31 +27,39 @@
                 <div class="collapse navbar-collapse" id="navbarsExample03">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{route('student.index')}}"><i class="fas fa-list fa-lg me-1"></i> List of Students</a>
+                            <a class="nav-link active" aria-current="page" href="{{route('student.index')}}"><i class="fas fa-list fa-lg me-1"></i> @lang('list_students')</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href=""><i class="fas fa-users fa-lg me-1"></i>Users</a>
+                            <a class="nav-link active" href=""><i class="fas fa-users fa-lg me-1"></i> Forum</a>
                         </li>
+
                         <li class="nav-item dropdown">
-                            <a class="nav-link  active dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                aria-expanded="false"><i class="fas fa-dove fa-lg me-1"></i> Start chirping</a>
+                            <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false"><i class="fas fa-dove fa-lg me-1"></i> @lang('chirping')</a>
                             <ul class="dropdown-menu shadow">
-                                <li><a class="dropdown-item" href=""><i class=" me-1"></i>New chirp</a></li>
-                                <li><a class="dropdown-item" href=""><i class=" me-1"></i>Recent chirps</a></li>
+                                <li><a class="dropdown-item" href=""><i class=" me-1"></i>@lang('chirping_new')</a></li>
+                                <li><a class="dropdown-item" href=""><i class=" me-1"></i>@lang('chirping_recent')</a></li>
                             </ul>
                         </li>
                     </ul>
                     <ul class="navbar-nav mb-2 mb-sm-0">
                         <li class="nav-item dropdown">
                             <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                aria-expanded="false"><i class="fas fa-globe me-1"></i> Language</a>
+                                aria-expanded="false"><i class="fas fa-globe me-1"></i>@lang('languages') {{$locale == '' ? '' : "($locale)" }}</a>
                             <ul class="dropdown-menu dropdown-menu-end shadow">
-                                <li><a class="dropdown-item" href="{{ route('lang', 'en') }}">English</a></li>
-                                <li><a class="dropdown-item" href="{{ route('lang', 'fr') }}">French</a></li>
+                                <li><a class="dropdown-item" href="{{ route('language', 'en') }}">@lang('english')</a></li>
+                                <li><a class="dropdown-item" href="{{ route('language', 'fr') }}">@lang('french')</a></li>
                             </ul>
+                        <li class="nav-item">
+                            <a class="nav-link active" href=""><i class="fas fa-users fa-lg me-1"></i>Users</a>
+                        </li>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#"><i class="fas fa-sign-out-alt me-1"></i> Logout</a>
+                            @guest
+                            <a class="nav-link active" href="#"><i class="fas fa-sign-in-alt me-1"></i> @lang('login')</a>
+                            @else
+                            <a class="nav-link active" href="#"><i class="fas fa-sign-out-alt me-1"></i> @lang('logout')</a>
+                            @endguest
                         </li>
                     </ul>
                 </div>
@@ -70,11 +79,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-0">&copy; {{date('Y')}} {{ config('app.name')}}. All Rights Reserved.</p>
+                    <p class="mb-0">&copy; {{date('Y')}} {{ config('app.name')}}. @lang('footer_text')</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <div>
-                        Follow us on social media:
+                        @lang('footer_socials')
                     </div>
                     <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
