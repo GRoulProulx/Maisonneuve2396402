@@ -51,7 +51,7 @@
                                 <li><a class="dropdown-item" href="{{ route('language', 'fr') }}">@lang('french')</a></li>
                             </ul>
                         <li class="nav-item">
-                            <a class="nav-link active" href=""><i class="fas fa-users fa-lg me-1"></i>Users</a>
+                            <a class="nav-link active" href="{{ route('user.create') }}"><i class="fas fa-user-plus me-2"></i>@lang("register")</a>
                         </li>
                         </li>
                         <li class="nav-item">

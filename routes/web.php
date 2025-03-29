@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SetLocaleController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,5 +45,18 @@ Route::delete('/student/{student}', [StudentController::class, 'destroy'])->name
 Route::post('/create/student', [StudentController::class, 'store'])->name('student.store');
 
 // LANGUAGES
-
 Route::get('/language/{locale}', [SetLocaleController::class, 'index'])->name('language');
+
+
+// LOGIN
+Route::get('/login', [AuthController::class, 'create'])->name('login');
+Route::post('/login', [AuthController::class, 'store'])->name('login.store');
+Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
+
+// REGISTER
+Route::get('/users', [UserController::class, 'index'])->name('user.index');
+Route::get('/register', [UserController::class, 'create'])->name('user.create');
+Route::post('/register', [UserController::class, 'store'])->name('user.store');
+Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edit');
+Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');
+Route::delete('/delete/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
