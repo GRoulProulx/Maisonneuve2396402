@@ -56,9 +56,9 @@
                         </li>
                         <li class="nav-item">
                             @guest
-                            <a class="nav-link active" href="#"><i class="fas fa-sign-in-alt me-1"></i> @lang('login')</a>
+                            <a class="nav-link active" href="{{ route('login') }}"><i class="fas fa-sign-in-alt me-1"></i> @lang('login')</a>
                             @else
-                            <a class="nav-link active" href="#"><i class="fas fa-sign-out-alt me-1"></i> @lang('logout')</a>
+                            <a class="nav-link active" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt me-1"></i> @lang('logout')</a>
                             @endguest
                         </li>
                     </ul>

@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('users.index');
     }
 
     /**
@@ -39,7 +39,7 @@ class UserController extends Controller
         $user->fill($request->all());
         $user->save();
 
-        return redirect()->route('user.index')->with('success', 'User created successfully');
+        return redirect()->route('home')->with('success', 'User created successfully');
     }
 
     /**

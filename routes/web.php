@@ -35,6 +35,8 @@ Route::resource('students', StudentController::class)->names([
     'update' => 'student.update',
     'destroy' => 'student.destroy',
 ]);
+
+
 // STUDENTS
 Route::get('/student', [StudentController::class, 'index'])->name('student.index');
 Route::get('/student/{student}', [StudentController::class, 'show'])->name('student.show');
@@ -52,6 +54,8 @@ Route::get('/language/{locale}', [SetLocaleController::class, 'index'])->name('l
 Route::get('/login', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
 Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
+
+
 
 // REGISTER
 Route::get('/users', [UserController::class, 'index'])->name('user.index');
