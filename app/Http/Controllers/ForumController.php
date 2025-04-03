@@ -36,15 +36,19 @@ class ForumController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'content' => 'required',
+            'title_en' => 'required_without:title_fr|max:100',
+            'content_en' => 'required_without:content_fr',
+            'title_fr' => 'required_without:title_en|max:100',
+            'content_fr' => 'required_without:content_en',
+        ]);
+        // Took the idea from the SetLocale! 
+        $forum = Forum::create([
+            "title_en" => $request->title_en ?? '', 
+            "content_en" => $request->content_en ?? '',
+            "title_fr" => $request->title_fr ?? '', 
+            "content_fr" => $request->content_fr ?? '',
         ]);
 
-        $forum = Forum::create([
-            "title" => $request->title,
-            "content" => $request->content,
-        ]);
-        
         return redirect()->route('forum.index', $forum->id)->with('success', 'Forum created successfully.');
     }
 
@@ -66,7 +70,7 @@ class ForumController extends Controller
     public function edit(string $id)
     {
         $forum = Forum::find($id);
-        
+
         return view("forum.edit", ['forum' => $forum]);
     }
 

@@ -10,8 +10,10 @@ class Forum extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'content',
+        'title_en',
+        'content_en',
+        'title_fr',
+        'content_fr',
     ];
 
     public function user()

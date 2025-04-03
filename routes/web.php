@@ -4,6 +4,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SetLocaleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ForumController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,3 +65,9 @@ Route::post('/register', [UserController::class, 'store'])->name('user.store');
 Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edit');
 Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');
 Route::delete('/delete/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+
+
+// FORUM
+Route::get('/forum', [ForumController::class, 'index'])->name('forum.index');
+Route::get('/create/forum', [ForumController::class, 'create'])->name('forum.create');
+Route::post('/create/forum', [ForumController::class, 'store'])->name('forum.store');
