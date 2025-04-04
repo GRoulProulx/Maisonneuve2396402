@@ -30,8 +30,8 @@ class DocumentsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title_en' => 'required|string|max:255',
-            'title_fr' => 'required|string|max:255',
+            'title_en' => 'required_without:title_fr|string|max:255',
+            'title_fr' => 'required_without:title_en|string|max:255',
             'document' => 'required|file|mimes:pdf,zip,doc,docx',
         ]);
 
